@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaling Biology | Growth of Biological Data</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Scaling Biology</h1>
+            <p class="subtitle">Tracking the growth of biological data</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Loading state -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading data...</p>
+        </div>
+
+        <!-- Error state -->
+        <div id="error" class="error-message" style="display: none;"></div>
+
+        <!-- Counters Section -->
+        <section id="counters" class="counters-grid"></section>
+
+        <!-- Charts Section -->
+        <section id="charts" class="charts-section" style="display: none;">
+            <div class="chart-controls">
+                <button class="btn active" data-view="cumulative">Cumulative</button>
+                <button class="btn" data-view="annual">Annual</button>
+                <button class="btn" data-view="log">Log Scale</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="mainChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Source Details -->
+        <section id="sources" class="sources-section" style="display: none;">
+            <h2>Data Sources</h2>
+            <div id="source-cards" class="source-cards"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Data updated: <span id="last-updated">-</span></p>
+            <p>
+                <a href="https://github.com/willconnell/scaling-bio" target="_blank">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/counter.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

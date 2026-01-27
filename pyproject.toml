@@ -1,0 +1,18 @@
+[project]
+name = "scaling-bio"
+version = "0.1.0"
+description = "Tracking the growth of biological data"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0.0",
+    "pyarrow>=14.0.0",
+    "requests>=2.31.0",
+    "pysradb>=2.0.0",
+    "cellxgene-census>=1.0.0",
+    "jsonschema>=4.20.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
