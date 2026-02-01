@@ -1,0 +1,107 @@
+{
+  "source": {
+    "id": "uniprot",
+    "name": "UniProt",
+    "description": "Universal Protein Resource - comprehensive protein sequences",
+    "url": "https://www.uniprot.org/uniprotkb/statistics",
+    "color": "#f59e0b",
+    "icon": "chain"
+  },
+  "metrics": [
+    {
+      "id": "sequences",
+      "name": "Protein Sequences",
+      "unit": "sequences",
+      "current_value": 253206171,
+      "formatted_value": "253M",
+      "description": "Total protein sequences in UniProtKB"
+    }
+  ],
+  "timeseries": [
+    {
+      "metric_id": "sequences",
+      "data": [
+        {
+          "date": "2011-01-01",
+          "cumulative": 13069501,
+          "value": 13069501
+        },
+        {
+          "date": "2012-01-01",
+          "cumulative": 19968488,
+          "value": 6898987
+        },
+        {
+          "date": "2013-01-01",
+          "cumulative": 29805788,
+          "value": 9837300
+        },
+        {
+          "date": "2014-01-01",
+          "cumulative": 52159208,
+          "value": 22353420
+        },
+        {
+          "date": "2015-01-01",
+          "cumulative": 55820795,
+          "value": 3661587
+        },
+        {
+          "date": "2016-01-01",
+          "cumulative": 60268458,
+          "value": 4447663
+        },
+        {
+          "date": "2017-01-01",
+          "cumulative": 102804649,
+          "value": 42536191
+        },
+        {
+          "date": "2018-01-01",
+          "cumulative": 108184003,
+          "value": 5379354
+        },
+        {
+          "date": "2019-01-01",
+          "cumulative": 140253338,
+          "value": 32069335
+        },
+        {
+          "date": "2020-01-01",
+          "cumulative": 178316438,
+          "value": 38063100
+        },
+        {
+          "date": "2021-01-01",
+          "cumulative": 208365010,
+          "value": 30048572
+        },
+        {
+          "date": "2022-01-01",
+          "cumulative": 230895644,
+          "value": 22530634
+        },
+        {
+          "date": "2023-01-01",
+          "cumulative": 246440937,
+          "value": 15545293
+        },
+        {
+          "date": "2024-01-01",
+          "cumulative": 250322721,
+          "value": 3881784
+        },
+        {
+          "date": "2025-01-01",
+          "cumulative": 253206171,
+          "value": 2883450
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-02-01T21:25:28.626997Z",
+    "update_frequency": "monthly",
+    "data_license": "CC BY 4.0"
+  }
+}

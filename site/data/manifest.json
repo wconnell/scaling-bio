@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-02-01T21:25:28.627265Z",
+  "sources": [
+    "sra",
+    "cellxgene",
+    "pdb",
+    "genbank",
+    "uniprot"
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "source": {
+    "id": "cellxgene",
+    "name": "CellxGene Census",
+    "description": "CZI's single-cell RNA-seq data repository",
+    "url": "https://chanzuckerberg.github.io/cellxgene-census/",
+    "color": "#10b981",
+    "icon": "cell"
+  },
+  "metrics": [
+    {
+      "id": "cells",
+      "name": "Single Cells",
+      "unit": "cells",
+      "current_value": 125463259,
+      "formatted_value": "125.5M",
+      "description": "Total single cells profiled"
+    }
+  ],
+  "timeseries": [
+    {
+      "metric_id": "cells",
+      "data": [
+        {
+          "date": "2016-10-01",
+          "cumulative": 4213,
+          "value": 4213
+        },
+        {
+          "date": "2017-10-01",
+          "cumulative": 11327,
+          "value": 7113
+        },
+        {
+          "date": "2018-10-01",
+          "cumulative": 28064,
+          "value": 16736
+        },
+        {
+          "date": "2018-12-01",
+          "cumulative": 137789,
+          "value": 109725
+        },
+        {
+          "date": "2019-08-01",
+          "cumulative": 202124,
+          "value": 64334
+        },
+        {
+          "date": "2019-10-01",
+          "cumulative": 304946,
+          "value": 102822
+        },
+        {
+          "date": "2019-11-01",
+          "cumulative": 332905,
+          "value": 27959
+        },
+        {
+          "date": "2019-12-01",
+          "cumulative": 808638,
+          "value": 475733
+        },
+        {
+          "date": "2020-01-01",
+          "cumulative": 1205961,
+          "value": 397322
+        },
+        {
+          "date": "2020-02-01",
+          "cumulative": 1288514,
+          "value": 82553
+        },
+        {
+          "date": "2020-04-01",
+          "cumulative": 1320921,
+          "value": 32406
+        },
+        {
+          "date": "2020-06-01",
+          "cumulative": 1612910,
+          "value": 291989
+        },
+        {
+          "date": "2020-07-01",
+          "cumulative": 1730987,
+          "value": 118076
+        },
+        {
+          "date": "2020-10-01",
+          "cumulative": 1753271,
+          "value": 22284
+        },
+        {
+          "date": "2020-11-01",
+          "cumulative": 1877636,
+          "value": 124365
+        },
+        {
+          "date": "2021-01-01",
+          "cumulative": 2250165,
+          "value": 372528
+        },
+        {
+          "date": "2021-02-01",
+          "cumulative": 2426661,
+          "value": 176495
+        },
+        {
+          "date": "2021-03-01",
+          "cumulative": 2874717,
+          "value": 448055
+        },
+        {
+          "date": "2021-04-01",
+          "cumulative": 3206284,
+          "value": 331567
+        },
+        {
+          "date": "2021-05-01",
+          "cumulative": 3274315,
+          "value": 68030
+        },
+        {
+          "date": "2021-06-01",
+          "cumulative": 3337410,
+          "value": 63095
+        },
+        {
+          "date": "2021-09-01",
+          "cumulative": 4147629,
+          "value": 810218
+        },
+        {
+          "date": "2021-10-01",
+          "cumulative": 4284937,
+          "value": 137308
+        },
+        {
+          "date": "2021-11-01",
+          "cumulative": 4565171,
+          "value": 280233
+        },
+        {
+          "date": "2022-01-01",
+          "cumulative": 4578173,
+          "value": 13002
+        },
+        {
+          "date": "2022-04-01",
+          "cumulative": 4802720,
+          "value": 224547
+        },
+        {
+          "date": "2022-05-01",
+          "cumulative": 11701124,
+          "value": 6898403
+        },
+        {
+          "date": "2022-08-01",
+          "cumulative": 12397413,
+          "value": 696288
+        },
+        {
+          "date": "2022-10-01",
+          "cumulative": 13475982,
+          "value": 1078569
+        },
+        {
+          "date": "2023-01-01",
+          "cumulative": 13529532,
+          "value": 53549
+        },
+        {
+          "date": "2023-02-01",
+          "cumulative": 13560619,
+          "value": 31086
+        },
+        {
+          "date": "2023-03-01",
+          "cumulative": 14664436,
+          "value": 1103817
+        },
+        {
+          "date": "2023-05-01",
+          "cumulative": 14843927,
+          "value": 179490
+        },
+        {
+          "date": "2023-06-01",
+          "cumulative": 18007174,
+          "value": 3163247
+        },
+        {
+          "date": "2023-07-01",
+          "cumulative": 18088992,
+          "value": 81818
+        },
+        {
+          "date": "2023-08-01",
+          "cumulative": 18186826,
+          "value": 97833
+        },
+        {
+          "date": "2023-09-01",
+          "cumulative": 18223470,
+          "value": 36644
+        },
+        {
+          "date": "2023-10-01",
+          "cumulative": 35603235,
+          "value": 17379765
+        },
+        {
+          "date": "2023-12-01",
+          "cumulative": 35906503,
+          "value": 303267
+        },
+        {
+          "date": "2024-01-01",
+          "cumulative": 36581375,
+          "value": 674872
+        },
+        {
+          "date": "2024-02-01",
+          "cumulative": 104676056,
+          "value": 68094680
+        },
+        {
+          "date": "2024-04-01",
+          "cumulative": 105705971,
+          "value": 1029915
+        },
+        {
+          "date": "2024-05-01",
+          "cumulative": 106976166,
+          "value": 1270194
+        },
+        {
+          "date": "2024-06-01",
+          "cumulative": 106990867,
+          "value": 14701
+        },
+        {
+          "date": "2024-07-01",
+          "cumulative": 107206352,
+          "value": 215485
+        },
+        {
+          "date": "2024-08-01",
+          "cumulative": 107424230,
+          "value": 217877
+        },
+        {
+          "date": "2024-09-01",
+          "cumulative": 108112011,
+          "value": 687781
+        },
+        {
+          "date": "2024-10-01",
+          "cumulative": 110657074,
+          "value": 2545062
+        },
+        {
+          "date": "2024-11-01",
+          "cumulative": 124071973,
+          "value": 13414899
+        },
+        {
+          "date": "2024-12-01",
+          "cumulative": 125167420,
+          "value": 1095446
+        },
+        {
+          "date": "2025-01-01",
+          "cumulative": 125397588,
+          "value": 230168
+        },
+        {
+          "date": "2025-08-01",
+          "cumulative": 125463259,
+          "value": 65670
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-02-01T21:25:18.847856Z",
+    "update_frequency": "quarterly",
+    "data_license": "CC BY 4.0"
+  }
+}

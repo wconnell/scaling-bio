@@ -1,0 +1,132 @@
+{
+  "source": {
+    "id": "sra",
+    "name": "Sequence Read Archive",
+    "description": "NCBI's archive of high-throughput sequencing data",
+    "url": "https://www.ncbi.nlm.nih.gov/sra/docs/sragrowth/",
+    "color": "#2563eb",
+    "icon": "dna"
+  },
+  "metrics": [
+    {
+      "id": "bases",
+      "name": "Total Bases",
+      "unit": "bases",
+      "current_value": 132621326089000000,
+      "formatted_value": "132.6 PB",
+      "description": "Total sequenced bases in SRA"
+    }
+  ],
+  "timeseries": [
+    {
+      "metric_id": "bases",
+      "data": [
+        {
+          "date": "2007-01-01",
+          "cumulative": 20189000000,
+          "value": 20189000000
+        },
+        {
+          "date": "2008-01-01",
+          "cumulative": 2247208000000,
+          "value": 2227019000000
+        },
+        {
+          "date": "2009-01-01",
+          "cumulative": 12429563000000,
+          "value": 10182355000000
+        },
+        {
+          "date": "2010-01-01",
+          "cumulative": 70385627000000,
+          "value": 57956064000000
+        },
+        {
+          "date": "2011-01-01",
+          "cumulative": 229578441000000,
+          "value": 159192814000000
+        },
+        {
+          "date": "2012-01-01",
+          "cumulative": 953561777000000,
+          "value": 723983336000000
+        },
+        {
+          "date": "2013-01-01",
+          "cumulative": 1856026567000000,
+          "value": 902464790000000
+        },
+        {
+          "date": "2014-01-01",
+          "cumulative": 2795157330000000,
+          "value": 939130763000000
+        },
+        {
+          "date": "2015-01-01",
+          "cumulative": 4363696867000000,
+          "value": 1568539537000000
+        },
+        {
+          "date": "2016-01-01",
+          "cumulative": 9222234002000000,
+          "value": 4858537135000000
+        },
+        {
+          "date": "2017-01-01",
+          "cumulative": 14604429156000000,
+          "value": 5382195154000000
+        },
+        {
+          "date": "2018-01-01",
+          "cumulative": 23126263317000000,
+          "value": 8521834161000000
+        },
+        {
+          "date": "2019-01-01",
+          "cumulative": 34068314240000000,
+          "value": 10942050923000000
+        },
+        {
+          "date": "2020-01-01",
+          "cumulative": 46493249966000000,
+          "value": 12424935726000000
+        },
+        {
+          "date": "2021-01-01",
+          "cumulative": 61347466050000000,
+          "value": 14854216084000000
+        },
+        {
+          "date": "2022-01-01",
+          "cumulative": 73875196664000000,
+          "value": 12527730614000000
+        },
+        {
+          "date": "2023-01-01",
+          "cumulative": 88822455905000000,
+          "value": 14947259241000000
+        },
+        {
+          "date": "2024-01-01",
+          "cumulative": 107785045381000000,
+          "value": 18962589476000000
+        },
+        {
+          "date": "2025-01-01",
+          "cumulative": 130560307231000000,
+          "value": 22775261850000000
+        },
+        {
+          "date": "2026-01-01",
+          "cumulative": 132621326089000000,
+          "value": 2061018858000000
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-02-01T21:25:03.960711Z",
+    "update_frequency": "weekly",
+    "data_license": "Public Domain"
+  }
+}

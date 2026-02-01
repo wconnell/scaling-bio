@@ -1,0 +1,287 @@
+{
+  "source": {
+    "id": "pdb",
+    "name": "Protein Data Bank",
+    "description": "3D structures of proteins, nucleic acids, and complex assemblies",
+    "url": "https://www.rcsb.org/stats/growth",
+    "color": "#ef4444",
+    "icon": "crystal"
+  },
+  "metrics": [
+    {
+      "id": "structures",
+      "name": "Protein Structures",
+      "unit": "structures",
+      "current_value": 248717,
+      "formatted_value": "248.7K",
+      "description": "Total 3D macromolecular structures"
+    }
+  ],
+  "timeseries": [
+    {
+      "metric_id": "structures",
+      "data": [
+        {
+          "date": "1976-01-01",
+          "cumulative": 13,
+          "value": 13
+        },
+        {
+          "date": "1977-01-01",
+          "cumulative": 36,
+          "value": 23
+        },
+        {
+          "date": "1978-01-01",
+          "cumulative": 42,
+          "value": 6
+        },
+        {
+          "date": "1979-01-01",
+          "cumulative": 53,
+          "value": 11
+        },
+        {
+          "date": "1980-01-01",
+          "cumulative": 69,
+          "value": 16
+        },
+        {
+          "date": "1981-01-01",
+          "cumulative": 85,
+          "value": 16
+        },
+        {
+          "date": "1982-01-01",
+          "cumulative": 117,
+          "value": 32
+        },
+        {
+          "date": "1983-01-01",
+          "cumulative": 153,
+          "value": 36
+        },
+        {
+          "date": "1984-01-01",
+          "cumulative": 175,
+          "value": 22
+        },
+        {
+          "date": "1985-01-01",
+          "cumulative": 195,
+          "value": 20
+        },
+        {
+          "date": "1986-01-01",
+          "cumulative": 213,
+          "value": 18
+        },
+        {
+          "date": "1987-01-01",
+          "cumulative": 238,
+          "value": 25
+        },
+        {
+          "date": "1988-01-01",
+          "cumulative": 291,
+          "value": 53
+        },
+        {
+          "date": "1989-01-01",
+          "cumulative": 365,
+          "value": 74
+        },
+        {
+          "date": "1990-01-01",
+          "cumulative": 507,
+          "value": 142
+        },
+        {
+          "date": "1991-01-01",
+          "cumulative": 694,
+          "value": 187
+        },
+        {
+          "date": "1992-01-01",
+          "cumulative": 886,
+          "value": 192
+        },
+        {
+          "date": "1993-01-01",
+          "cumulative": 1582,
+          "value": 696
+        },
+        {
+          "date": "1994-01-01",
+          "cumulative": 2871,
+          "value": 1289
+        },
+        {
+          "date": "1995-01-01",
+          "cumulative": 3812,
+          "value": 941
+        },
+        {
+          "date": "1996-01-01",
+          "cumulative": 4984,
+          "value": 1172
+        },
+        {
+          "date": "1997-01-01",
+          "cumulative": 6548,
+          "value": 1564
+        },
+        {
+          "date": "1998-01-01",
+          "cumulative": 8603,
+          "value": 2055
+        },
+        {
+          "date": "1999-01-01",
+          "cumulative": 10959,
+          "value": 2356
+        },
+        {
+          "date": "2000-01-01",
+          "cumulative": 13583,
+          "value": 2624
+        },
+        {
+          "date": "2001-01-01",
+          "cumulative": 16393,
+          "value": 2810
+        },
+        {
+          "date": "2002-01-01",
+          "cumulative": 19387,
+          "value": 2994
+        },
+        {
+          "date": "2003-01-01",
+          "cumulative": 23531,
+          "value": 4144
+        },
+        {
+          "date": "2004-01-01",
+          "cumulative": 28680,
+          "value": 5149
+        },
+        {
+          "date": "2005-01-01",
+          "cumulative": 34014,
+          "value": 5334
+        },
+        {
+          "date": "2006-01-01",
+          "cumulative": 40419,
+          "value": 6405
+        },
+        {
+          "date": "2007-01-01",
+          "cumulative": 47553,
+          "value": 7134
+        },
+        {
+          "date": "2008-01-01",
+          "cumulative": 54456,
+          "value": 6903
+        },
+        {
+          "date": "2009-01-01",
+          "cumulative": 61744,
+          "value": 7288
+        },
+        {
+          "date": "2010-01-01",
+          "cumulative": 69486,
+          "value": 7742
+        },
+        {
+          "date": "2011-01-01",
+          "cumulative": 77411,
+          "value": 7925
+        },
+        {
+          "date": "2012-01-01",
+          "cumulative": 86162,
+          "value": 8751
+        },
+        {
+          "date": "2013-01-01",
+          "cumulative": 95500,
+          "value": 9338
+        },
+        {
+          "date": "2014-01-01",
+          "cumulative": 105052,
+          "value": 9552
+        },
+        {
+          "date": "2015-01-01",
+          "cumulative": 114295,
+          "value": 9243
+        },
+        {
+          "date": "2016-01-01",
+          "cumulative": 125099,
+          "value": 10804
+        },
+        {
+          "date": "2017-01-01",
+          "cumulative": 136160,
+          "value": 11061
+        },
+        {
+          "date": "2018-01-01",
+          "cumulative": 147329,
+          "value": 11169
+        },
+        {
+          "date": "2019-01-01",
+          "cumulative": 158808,
+          "value": 11479
+        },
+        {
+          "date": "2020-01-01",
+          "cumulative": 172814,
+          "value": 14006
+        },
+        {
+          "date": "2021-01-01",
+          "cumulative": 185400,
+          "value": 12586
+        },
+        {
+          "date": "2022-01-01",
+          "cumulative": 199686,
+          "value": 14286
+        },
+        {
+          "date": "2023-01-01",
+          "cumulative": 214186,
+          "value": 14500
+        },
+        {
+          "date": "2024-01-01",
+          "cumulative": 229651,
+          "value": 15465
+        },
+        {
+          "date": "2025-01-01",
+          "cumulative": 247282,
+          "value": 17631
+        },
+        {
+          "date": "2026-01-01",
+          "cumulative": 248717,
+          "value": 1435
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-02-01T21:25:24.135108Z",
+    "update_frequency": "weekly",
+    "data_license": "CC0 1.0"
+  }
+}
