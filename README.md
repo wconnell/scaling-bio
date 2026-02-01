@@ -1,8 +1,14 @@
 # Scaling Biology
 
-Tracking the exponential growth of biological data. [Contributions welcome!](#contributing)
+Tracking the growth of biological data. [Contributions welcome!](#contributing)
 
-**Live site:** [wconnell.github.io/scaling-bio](https://wconnell.github.io/scaling-bio)
+This project is a follow up to my Substack posts on the subject:
+- [Scaling biology: transcriptomics](https://behindbioml.substack.com/p/scaling-biology-part-1), 4/2024
+- [Scaling biology: genomics](https://behindbioml.substack.com/p/scaling-biology-genomics), 8/2024
+
+**🌐 Live site:** [wconnell.github.io/scaling-bio](https://wconnell.github.io/scaling-bio)
+
+
 
 ## Methodology
 
@@ -42,13 +48,6 @@ Data is collected weekly via automated GitHub Actions from primary sources. Each
 - **Source:** [UniProt FTP Release Archives](https://ftp.uniprot.org/pub/databases/uniprot/previous_releases/)
 - **Method:** Parses `relnotes.txt` from each yearly release to extract entry counts
 - **Update frequency:** Monthly
-
-## Tech Stack
-
-- **Data collection:** Python, pandas, google-cloud-bigquery, cellxgene-census, requests, beautifulsoup4
-- **Frontend:** Vanilla HTML/CSS/JS, Chart.js
-- **Automation:** GitHub Actions (weekly cron)
-- **Hosting:** GitHub Pages
 
 ## Contributing
 
