@@ -149,8 +149,14 @@ class UniProtCollector(BaseCollector):
             if response.status_code == 200:
                 total = response.headers.get('X-Total-Results')
                 if total:
-                    historical[current_year] = int(total)
-                    print(f"    {current_year}: {int(total):,} entries (current)")
+                    total_int = int(total)
+                    # Only use API value if it's higher than previous year (sanity check)
+                    max_historical = max(historical.values()) if historical else 0
+                    if total_int >= max_historical:
+                        historical[current_year] = total_int
+                        print(f"    {current_year}: {total_int:,} entries (current)")
+                    else:
+                        print(f"    {current_year}: API returned {total_int:,} (lower than previous, skipping)")
         except Exception as e:
             print(f"  Warning: Could not fetch current count: {e}")
 

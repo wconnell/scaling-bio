@@ -25,7 +25,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run collectors
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/gcp-key.json
         run: |
+          echo '${{ secrets.GCP_CREDENTIALS }}' > ${{ runner.temp }}/gcp-key.json
           python scripts/collect_all.py
 
       - name: Validate JSON schema
