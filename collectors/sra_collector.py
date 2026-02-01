@@ -31,7 +31,7 @@ class SRACollector(BaseCollector):
             description="NCBI's archive of high-throughput sequencing data",
             url="https://www.ncbi.nlm.nih.gov/sra/docs/sragrowth/",
             color="#2563eb",
-            icon="dna"
+            icon="microbe"
         )
 
     def collect(self) -> None:

@@ -138,6 +138,7 @@ class ScalingBioApp {
             'chain': '🔗',
             'protein': '🔷',
             'database': '🗄️',
+            'microbe': '🦠',
             'default': '📊'
         };
         return icons[iconName] || icons.default;
