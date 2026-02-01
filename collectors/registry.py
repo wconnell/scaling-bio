@@ -46,5 +46,17 @@ def _register_all():
     except ImportError as e:
         print(f"Warning: Could not import PDB collector: {e}")
 
+    try:
+        from .genbank_collector import GenBankCollector
+        register_collector("genbank", GenBankCollector)
+    except ImportError as e:
+        print(f"Warning: Could not import GenBank collector: {e}")
+
+    try:
+        from .uniprot_collector import UniProtCollector
+        register_collector("uniprot", UniProtCollector)
+    except ImportError as e:
+        print(f"Warning: Could not import UniProt collector: {e}")
+
 
 _register_all()

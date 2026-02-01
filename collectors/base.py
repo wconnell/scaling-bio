@@ -100,9 +100,11 @@ class CollectorOutput:
 
     @staticmethod
     def _format_number(n: float) -> str:
-        """Format a number with appropriate suffix (K, M, B, T)."""
-        if n >= 1e12:
-            return f"{n/1e12:.1f}T"
+        """Format a number with appropriate suffix (K, M, B, T, PB)."""
+        if n >= 1e15:
+            return f"{n/1e15:.1f} PB"
+        elif n >= 1e12:
+            return f"{n/1e12:.1f} TB"
         elif n >= 1e9:
             return f"{n/1e9:.1f}B"
         elif n >= 1e6:

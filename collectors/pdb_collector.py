@@ -30,9 +30,9 @@ class PDBCollector(BaseCollector):
             id="pdb",
             name="Protein Data Bank",
             description="3D structures of proteins, nucleic acids, and complex assemblies",
-            url="https://www.rcsb.org/",
+            url="https://www.rcsb.org/stats/growth",
             color="#ef4444",
-            icon="protein"
+            icon="crystal"
         )
 
     def collect(self) -> None:

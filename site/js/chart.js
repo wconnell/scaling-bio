@@ -119,6 +119,14 @@ class ChartManager {
                     borderColor: '#334155',
                     borderWidth: 1,
                     callbacks: {
+                        title: function(context) {
+                            const date = new Date(context[0].parsed.x);
+                            return date.toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                            });
+                        },
                         label: function(context) {
                             return `${context.dataset.label}: ${self.formatNumber(context.parsed.y)}`;
                         }
@@ -130,10 +138,10 @@ class ChartManager {
 
     formatNumber(n) {
         if (n === 0) return '0';
-        if (n >= 1e12) return (n / 1e12).toFixed(1) + 'T';
-        if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
-        if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
-        if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
-        return n.toString();
+        const exp = Math.floor(Math.log10(Math.abs(n)));
+        const mantissa = n / Math.pow(10, exp);
+        const superscripts = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+        const expStr = String(exp).split('').map(d => superscripts[d]).join('');
+        return `${mantissa.toFixed(1)}×10${expStr}`;
     }
 }

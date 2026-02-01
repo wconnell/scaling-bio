@@ -40,7 +40,9 @@ class ScalingBioApp {
     }
 
     async loadJSON(path) {
-        const response = await fetch(path);
+        // Add cache-busting for data files
+        const url = path.includes('data/') ? `${path}?v=${Date.now()}` : path;
+        const response = await fetch(url);
         if (!response.ok) throw new Error(`Failed to load ${path}`);
         return response.json();
     }
@@ -156,7 +158,10 @@ class ScalingBioApp {
         const icons = {
             'dna': '🧬',
             'cell': '🔬',
+            'crystal': '🧊',
+            'chain': '🔗',
             'protein': '🔷',
+            'database': '🗄️',
             'default': '📊'
         };
         return icons[iconName] || icons.default;

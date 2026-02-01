@@ -1,8 +1,7 @@
-"""Collector for NCBI Sequence Read Archive data."""
+"""Collector for NCBI Sequence Read Archive data using BigQuery."""
 
 import os
-import glob
-from datetime import datetime, timedelta
+from datetime import datetime
 import pandas as pd
 
 from .base import (
@@ -12,7 +11,10 @@ from .base import (
 
 
 class SRACollector(BaseCollector):
-    """Collector for NCBI Sequence Read Archive data."""
+    """Collector for NCBI Sequence Read Archive total bases.
+
+    Uses Google BigQuery public dataset: nih-sra-datastore.sra.metadata
+    """
 
     def __init__(self, data_dir: str = "data/sra"):
         self.data_dir = data_dir
@@ -27,159 +29,94 @@ class SRACollector(BaseCollector):
             id="sra",
             name="Sequence Read Archive",
             description="NCBI's archive of high-throughput sequencing data",
-            url="https://www.ncbi.nlm.nih.gov/sra",
+            url="https://www.ncbi.nlm.nih.gov/sra/docs/sragrowth/",
             color="#2563eb",
             icon="dna"
         )
 
     def collect(self) -> None:
-        """
-        Collect SRA metadata using pysradb.
-        This is a simplified version - for full historical data,
-        run the original sra_metadata.py script.
-        """
-        from pysradb.search import SraSearch
+        """Fetch SRA total bases by year from BigQuery."""
+        from google.cloud import bigquery
 
         os.makedirs(self.data_dir, exist_ok=True)
 
-        # Check what we already have
-        existing_files = glob.glob(os.path.join(self.data_dir, "*.parquet"))
+        print("  Querying BigQuery for SRA total bases by year...")
 
-        if existing_files:
-            # Get most recent date from existing files
-            dates = []
-            for f in existing_files:
-                basename = os.path.basename(f)
-                try:
-                    date_str = basename.split('_')[-1].split('.')[0]
-                    date = datetime.strptime(date_str, "%Y%m%d")
-                    dates.append(date)
-                except:
-                    continue
-            start_date = max(dates) + timedelta(days=1) if dates else datetime(2007, 1, 1)
-        else:
-            start_date = datetime(2007, 1, 1)
+        client = bigquery.Client()
 
-        end_date = datetime.now()
+        # Note: mbases = megabases, multiply by 1e6 to get actual bases
+        # releasedate is a TIMESTAMP column
+        query = """
+        SELECT
+            EXTRACT(YEAR FROM releasedate) as year,
+            SUM(mbases) * 1000000 as total_bases,
+            COUNT(*) as run_count
+        FROM `nih-sra-datastore.sra.metadata`
+        WHERE releasedate IS NOT NULL
+            AND mbases IS NOT NULL
+            AND mbases > 0
+        GROUP BY year
+        ORDER BY year
+        """
 
-        # Collect in 2-week chunks
-        current_date = start_date
-        while current_date < end_date:
-            next_date = min(current_date + timedelta(days=14), end_date)
+        query_job = client.query(query)
+        results = query_job.result()
 
-            start_str = current_date.strftime("%d-%m-%Y")
-            end_str = next_date.strftime("%d-%m-%Y")
-            publication_date = f"{start_str}:{end_str}"
+        yearly_data = []
+        for row in results:
+            if row.year and row.total_bases:
+                yearly_data.append({
+                    'year': int(row.year),
+                    'bases': int(row.total_bases),
+                    'runs': int(row.run_count)
+                })
+                print(f"    {row.year}: {row.total_bases / 1e15:.2f} PB ({row.run_count:,} runs)")
 
-            try:
-                print(f"  Fetching SRA data for {publication_date}...")
-                instance = SraSearch(
-                    query='(genomic[Source])',
-                    publication_date=publication_date,
-                    verbosity=0,
-                    return_max=10000000
-                )
-                instance.search()
-                df = instance.get_df()
+        # Compute cumulative
+        running_total = 0
+        for entry in yearly_data:
+            running_total += entry['bases']
+            entry['cumulative_bases'] = running_total
 
-                if not df.empty:
-                    filename = f"sra_search_{current_date.strftime('%Y%m%d')}_to_{next_date.strftime('%Y%m%d')}.parquet"
-                    filepath = os.path.join(self.data_dir, filename)
-                    df.to_parquet(filepath, index=False)
-                    print(f"    Saved {len(df)} records")
-
-            except Exception as e:
-                print(f"    Error: {e}")
-
-            current_date = next_date
+        df = pd.DataFrame(yearly_data)
+        df.to_parquet(os.path.join(self.data_dir, "sra_bases.parquet"))
+        print(f"  Total bases: {running_total / 1e15:.2f} PB")
 
     def transform(self) -> CollectorOutput:
-        """Transform parquet files to standard format."""
-        parquet_files = glob.glob(os.path.join(self.data_dir, "*.parquet"))
+        """Transform BigQuery data to standard format."""
+        df = pd.read_parquet(os.path.join(self.data_dir, "sra_bases.parquet"))
 
-        if not parquet_files:
-            raise ValueError(f"No parquet files found in {self.data_dir}. Run collect() first.")
-
-        # Load and combine all files
-        dfs = []
-        for f in parquet_files:
-            try:
-                df = pd.read_parquet(f)
-                dfs.append(df)
-            except Exception as e:
-                print(f"Warning: Could not read {f}: {e}")
-
-        if not dfs:
-            raise ValueError("Could not read any parquet files")
-
-        combined = pd.concat(dfs, ignore_index=True)
-
-        # Parse dates - handle various column names
-        date_col = None
-        for col in ['publication_date', 'pub_date', 'releasedate', 'release_date']:
-            if col in combined.columns:
-                date_col = col
-                break
-
-        if date_col is None:
-            # Try to extract date from file names instead
-            monthly_counts = self._aggregate_from_filenames(parquet_files)
-        else:
-            combined['pub_date'] = pd.to_datetime(combined[date_col], errors='coerce')
-            combined = combined.dropna(subset=['pub_date'])
-            combined['month'] = combined['pub_date'].dt.to_period('M')
-
-            monthly = combined.groupby('month').size().reset_index(name='count')
-            monthly['cumulative'] = monthly['count'].cumsum()
-            monthly['date'] = monthly['month'].dt.to_timestamp().dt.strftime('%Y-%m-%d')
-            monthly_counts = monthly
-
-        # Build timeseries
+        # Convert to timeseries (use Jan 1 of each year as date)
         timeseries_data = [
             TimeseriesPoint(
-                date=row['date'],
-                value=int(row['count']),
-                cumulative=int(row['cumulative'])
+                date=f"{int(row['year'])}-01-01",
+                value=int(row['bases']),
+                cumulative=int(row['cumulative_bases'])
             )
-            for _, row in monthly_counts.iterrows()
+            for _, row in df.iterrows()
         ]
 
-        current_total = int(monthly_counts['cumulative'].iloc[-1]) if len(monthly_counts) > 0 else 0
+        current_total = int(df['cumulative_bases'].iloc[-1])
+
+        # Format as petabases
+        petabases = current_total / 1e15
+        formatted = f"{petabases:.1f} PB"
 
         return CollectorOutput(
             source=self.source_info,
             metrics=[
                 Metric(
-                    id="sequences",
-                    name="Sequencing Runs",
-                    unit="runs",
+                    id="bases",
+                    name="Total Bases",
+                    unit="bases",
                     current_value=current_total,
-                    description="Total genomic sequencing runs in SRA"
+                    formatted_value=formatted,
+                    description="Total sequenced bases in SRA"
                 )
             ],
             timeseries=[
-                Timeseries(metric_id="sequences", data=timeseries_data)
+                Timeseries(metric_id="bases", data=timeseries_data)
             ],
             update_frequency="weekly",
             data_license="Public Domain"
         )
-
-    def _aggregate_from_filenames(self, parquet_files: list) -> pd.DataFrame:
-        """Fallback: aggregate counts from file date ranges."""
-        records = []
-        for f in sorted(parquet_files):
-            basename = os.path.basename(f)
-            try:
-                # Parse: sra_search_YYYYMMDD_to_YYYYMMDD.parquet
-                parts = basename.replace('.parquet', '').split('_')
-                start_str = parts[2]
-                df = pd.read_parquet(f)
-                count = len(df)
-                date = datetime.strptime(start_str, "%Y%m%d")
-                records.append({'date': date.strftime('%Y-%m-%d'), 'count': count})
-            except:
-                continue
-
-        df = pd.DataFrame(records)
-        df['cumulative'] = df['count'].cumsum()
-        return df

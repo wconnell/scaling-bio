@@ -34,7 +34,7 @@ class CellxGeneCollector(BaseCollector):
             id="cellxgene",
             name="CellxGene Census",
             description="CZI's single-cell RNA-seq data repository",
-            url="https://cellxgene.cziscience.com/",
+            url="https://chanzuckerberg.github.io/cellxgene-census/",
             color="#10b981",
             icon="cell"
         )
@@ -88,6 +88,10 @@ class CellxGeneCollector(BaseCollector):
 
     def transform(self) -> CollectorOutput:
         """Transform collected data to standard format."""
+        # Load census summary for official totals
+        summary = pd.read_parquet(os.path.join(self.data_dir, "summary.parquet"))
+        official_total = int(summary[summary['label'] == 'unique_cell_count']['value'].values[0])
+
         # Load dataset metadata
         ds_meta = pd.read_parquet(os.path.join(self.data_dir, "datasets.parquet"))
 
@@ -104,34 +108,38 @@ class CellxGeneCollector(BaseCollector):
         pub_dates = self._get_publication_dates(unique_dois)
         ds_meta['pub_date'] = ds_meta['collection_doi'].map(pub_dates)
         ds_meta['pub_date'] = pd.to_datetime(ds_meta['pub_date'], errors='coerce')
-        ds_meta = ds_meta.dropna(subset=['pub_date'])
+        ds_meta_with_dates = ds_meta.dropna(subset=['pub_date'])
 
         # Make timezone naive
-        ds_meta['pub_date'] = ds_meta['pub_date'].dt.tz_localize(None)
+        ds_meta_with_dates['pub_date'] = ds_meta_with_dates['pub_date'].dt.tz_localize(None)
 
         # Sort by publication date and compute cumulative
-        ds_meta = ds_meta.sort_values('pub_date')
-        ds_meta['cum_cells'] = ds_meta['cell_count'].cumsum()
+        ds_meta_with_dates = ds_meta_with_dates.sort_values('pub_date')
+        ds_meta_with_dates['cum_cells'] = ds_meta_with_dates['cell_count'].cumsum()
 
         # Aggregate by month for cleaner timeseries
-        ds_meta['month'] = ds_meta['pub_date'].dt.to_period('M')
-        monthly = ds_meta.groupby('month').agg({
+        ds_meta_with_dates['month'] = ds_meta_with_dates['pub_date'].dt.to_period('M')
+        monthly = ds_meta_with_dates.groupby('month').agg({
             'cell_count': 'sum',
             'cum_cells': 'last',
         }).reset_index()
         monthly['date'] = monthly['month'].dt.to_timestamp().dt.strftime('%Y-%m-%d')
 
+        # Scale timeseries to match official total (some datasets lack DOIs)
+        timeseries_total = int(monthly['cum_cells'].iloc[-1]) if len(monthly) > 0 else 1
+        scale_factor = official_total / timeseries_total
+
         # Build timeseries
         cells_ts = [
             TimeseriesPoint(
                 date=row['date'],
-                value=int(row['cell_count']),
-                cumulative=int(row['cum_cells'])
+                value=int(row['cell_count'] * scale_factor),
+                cumulative=int(row['cum_cells'] * scale_factor)
             )
             for _, row in monthly.iterrows()
         ]
 
-        total_cells = int(monthly['cum_cells'].iloc[-1])
+        total_cells = official_total
 
         return CollectorOutput(
             source=self.source_info,

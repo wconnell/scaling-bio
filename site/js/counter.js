@@ -23,7 +23,8 @@ class AnimatedCounter {
         if (progress < 1) {
             requestAnimationFrame((t) => this.animate(t));
         } else {
-            this.element.textContent = this.formatted;
+            // Use scientific notation for final value
+            this.element.textContent = this.toScientific(this.target);
         }
     }
 
@@ -32,7 +33,16 @@ class AnimatedCounter {
     }
 
     formatNumber(n) {
-        return n.toLocaleString();
+        return this.toScientific(n);
+    }
+
+    toScientific(n) {
+        if (n === 0) return '0';
+        const exp = Math.floor(Math.log10(Math.abs(n)));
+        const mantissa = n / Math.pow(10, exp);
+        const superscripts = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+        const expStr = String(exp).split('').map(d => superscripts[d]).join('');
+        return `${mantissa.toFixed(1)}×10${expStr}`;
     }
 
     start() {
