@@ -5,7 +5,7 @@
     "description": "NCBI's archive of high-throughput sequencing data",
     "url": "https://www.ncbi.nlm.nih.gov/sra/docs/sragrowth/",
     "color": "#2563eb",
-    "icon": "dna"
+    "icon": "microbe"
   },
   "metrics": [
     {
@@ -125,7 +125,7 @@
     }
   ],
   "metadata": {
-    "last_updated": "2026-02-01T21:25:03.960711Z",
+    "last_updated": "2026-02-01T22:19:05.390573Z",
     "update_frequency": "weekly",
     "data_license": "Public Domain"
   }

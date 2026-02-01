@@ -12,8 +12,8 @@
       "id": "bases",
       "name": "Total Bases",
       "unit": "bases",
-      "current_value": 6651459875408,
-      "formatted_value": "6.7 TB",
+      "current_value": 5676067778413,
+      "formatted_value": "5.7 TB",
       "description": "Total annotated nucleotide bases in GenBank"
     }
   ],
@@ -22,89 +22,29 @@
       "metric_id": "bases",
       "data": [
         {
-          "date": "1982-01-01",
-          "cumulative": 680338,
-          "value": 680338
-        },
-        {
-          "date": "1983-01-01",
-          "cumulative": 2274029,
-          "value": 1593691
-        },
-        {
-          "date": "1984-01-01",
-          "cumulative": 3689752,
-          "value": 1415723
-        },
-        {
-          "date": "1985-01-01",
-          "cumulative": 5204420,
-          "value": 1514668
-        },
-        {
-          "date": "1986-01-01",
-          "cumulative": 9615371,
-          "value": 4410951
-        },
-        {
-          "date": "1987-01-01",
-          "cumulative": 16752872,
-          "value": 7137501
-        },
-        {
-          "date": "1988-01-01",
-          "cumulative": 24690876,
-          "value": 7938004
-        },
-        {
-          "date": "1989-01-01",
-          "cumulative": 37183950,
-          "value": 12493074
-        },
-        {
-          "date": "1990-01-01",
-          "cumulative": 51306092,
-          "value": 14122142
-        },
-        {
-          "date": "1991-01-01",
-          "cumulative": 77337678,
-          "value": 26031586
-        },
-        {
           "date": "1992-01-01",
-          "cumulative": 120242234,
-          "value": 42904556
-        },
-        {
-          "date": "1993-01-01",
-          "cumulative": 163802597,
-          "value": 43560363
-        },
-        {
-          "date": "1994-01-01",
-          "cumulative": 230485928,
-          "value": 66683331
+          "cumulative": 217102462,
+          "value": 217102462
         },
         {
           "date": "1995-01-01",
-          "cumulative": 425860958,
-          "value": 195375030
+          "cumulative": 353713490,
+          "value": 136611028
         },
         {
           "date": "1996-01-01",
-          "cumulative": 730552938,
-          "value": 304691980
+          "cumulative": 551750920,
+          "value": 198037430
         },
         {
           "date": "1997-01-01",
-          "cumulative": 1258290513,
-          "value": 527737575
+          "cumulative": 1372368913,
+          "value": 820617993
         },
         {
           "date": "1998-01-01",
           "cumulative": 2162067871,
-          "value": 903777358
+          "value": 789698958
         },
         {
           "date": "1999-01-01",
@@ -113,103 +53,103 @@
         },
         {
           "date": "2000-01-01",
-          "cumulative": 11101066288,
-          "value": 6447133543
+          "cumulative": 10335692655,
+          "value": 5681759910
         },
         {
           "date": "2001-01-01",
-          "cumulative": 15849921438,
-          "value": 4748855150
+          "cumulative": 13543364296,
+          "value": 3207671641
         },
         {
           "date": "2002-01-01",
-          "cumulative": 28507990166,
-          "value": 12658068728
+          "cumulative": 20648748345,
+          "value": 7105384049
         },
         {
           "date": "2003-01-01",
-          "cumulative": 36553368485,
-          "value": 8045378319
+          "cumulative": 31099264455,
+          "value": 10450516110
         },
         {
           "date": "2004-01-01",
           "cumulative": 44575745176,
-          "value": 8022376691
+          "value": 13476480721
         },
         {
           "date": "2005-01-01",
-          "cumulative": 56037734462,
-          "value": 11461989286
+          "cumulative": 53655236500,
+          "value": 9079491324
         },
         {
           "date": "2006-01-01",
-          "cumulative": 69019290705,
-          "value": 12981556243
+          "cumulative": 65369091950,
+          "value": 11713855450
         },
         {
           "date": "2007-01-01",
-          "cumulative": 83874179730,
-          "value": 14854889025
+          "cumulative": 77248690945,
+          "value": 11879598995
         },
         {
           "date": "2008-01-01",
-          "cumulative": 99116431942,
-          "value": 15242252212
+          "cumulative": 89172350468,
+          "value": 11923659523
         },
         {
           "date": "2009-01-01",
           "cumulative": 110118557163,
-          "value": 11002125221
+          "value": 20946206695
         },
         {
           "date": "2010-01-01",
-          "cumulative": 122082812719,
-          "value": 11964255556
+          "cumulative": 118551641086,
+          "value": 8433083923
         },
         {
           "date": "2011-01-01",
-          "cumulative": 135117731375,
-          "value": 13034918656
+          "cumulative": 130671233801,
+          "value": 12119592715
         },
         {
           "date": "2012-01-01",
-          "cumulative": 148390863904,
-          "value": 13273132529
+          "cumulative": 141343240755,
+          "value": 10672006954
         },
         {
           "date": "2013-01-01",
-          "cumulative": 156230531562,
-          "value": 7839667658
+          "cumulative": 151178979155,
+          "value": 9835738400
         },
         {
           "date": "2014-01-01",
           "cumulative": 184938063614,
-          "value": 28707532052
+          "value": 33759084459
         },
         {
           "date": "2015-01-01",
-          "cumulative": 203939111071,
-          "value": 19001047457
+          "cumulative": 202237081559,
+          "value": 17299017945
         },
         {
           "date": "2016-01-01",
-          "cumulative": 224973060433,
-          "value": 21033949362
+          "cumulative": 217971437647,
+          "value": 15734356088
         },
         {
           "date": "2017-01-01",
-          "cumulative": 249722163594,
-          "value": 24749103161
+          "cumulative": 234997362623,
+          "value": 17025924976
         },
         {
           "date": "2018-01-01",
-          "cumulative": 285688542186,
-          "value": 35966378592
+          "cumulative": 260189141631,
+          "value": 25191779008
         },
         {
           "date": "2019-01-01",
           "cumulative": 388417258009,
-          "value": 102728715823
+          "value": 128228116378
         },
         {
           "date": "2020-01-01",
@@ -238,14 +178,14 @@
         },
         {
           "date": "2025-01-01",
-          "cumulative": 6651459875408,
-          "value": 1565554899070
+          "cumulative": 5676067778413,
+          "value": 590162802075
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-02-01T21:25:24.425610Z",
+    "last_updated": "2026-02-01T22:19:31.050917Z",
     "update_frequency": "bimonthly",
     "data_license": "Public Domain"
   }
