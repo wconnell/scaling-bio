@@ -5,7 +5,6 @@ import re
 from datetime import datetime
 import pandas as pd
 import requests
-from bs4 import BeautifulSoup
 
 from .base import (
     BaseCollector, CollectorOutput, SourceInfo,
@@ -16,10 +15,10 @@ from .base import (
 class GenBankCollector(BaseCollector):
     """Collector for NCBI GenBank total bases.
 
-    Scrapes historical growth data from NCBI GenBank Statistics page.
+    Fetches statistics from FTP release notes files.
     """
 
-    STATS_URL = "https://www.ncbi.nlm.nih.gov/genbank/statistics/"
+    FTP_BASE = "https://ftp.ncbi.nih.gov/genbank/release.notes"
 
     def __init__(self, data_dir: str = "data/genbank"):
         self.data_dir = data_dir
@@ -40,75 +39,83 @@ class GenBankCollector(BaseCollector):
         )
 
     def collect(self) -> None:
-        """Fetch GenBank statistics from NCBI."""
+        """Fetch GenBank statistics from FTP release notes."""
         os.makedirs(self.data_dir, exist_ok=True)
 
-        print("  Fetching GenBank statistics...")
+        print("  Fetching GenBank release notes...")
 
-        response = requests.get(self.STATS_URL, timeout=30)
+        # Get list of release notes files
+        response = requests.get(f"{self.FTP_BASE}/", timeout=30)
         response.raise_for_status()
 
-        soup = BeautifulSoup(response.text, 'html.parser')
+        # Parse release numbers from directory listing
+        release_pattern = re.compile(r'gb(\d+)\.release\.notes')
+        releases = sorted(set(int(m.group(1)) for m in release_pattern.finditer(response.text)))
 
-        # Find the growth table - it contains Release, Date, Base Pairs, Sequences
-        tables = soup.find_all('table')
+        print(f"    Found {len(releases)} releases (gb{releases[0]} to gb{releases[-1]})")
 
         growth_data = []
 
-        for table in tables:
-            headers = [th.get_text(strip=True).lower() for th in table.find_all('th')]
+        # Sample releases: every ~10 releases for history, plus recent ones
+        sampled = []
+        for r in releases:
+            if r <= 150 and r % 10 == 0:  # Early: every 10
+                sampled.append(r)
+            elif r <= 230 and r % 5 == 0:  # Mid: every 5
+                sampled.append(r)
+            elif r > 230:  # Recent: all
+                sampled.append(r)
 
-            # Look for table with base pairs column
-            if any('base' in h for h in headers):
-                rows = table.find_all('tr')[1:]  # Skip header
+        # Always include first and last
+        if releases[0] not in sampled:
+            sampled.insert(0, releases[0])
+        if releases[-1] not in sampled:
+            sampled.append(releases[-1])
 
-                for row in rows:
-                    cols = row.find_all('td')
-                    if len(cols) >= 3:
-                        try:
-                            # Parse release number
-                            release_text = cols[0].get_text(strip=True)
+        sampled = sorted(set(sampled))
+        print(f"    Sampling {len(sampled)} releases...")
 
-                            # Parse date (format varies: "Dec 2024", "12/2024", etc.)
-                            date_text = cols[1].get_text(strip=True)
+        for release_num in sampled:
+            url = f"{self.FTP_BASE}/gb{release_num}.release.notes"
+            try:
+                resp = requests.get(url, timeout=30)
+                if resp.status_code != 200:
+                    continue
 
-                            # Parse base pairs (may have commas)
-                            bp_text = cols[2].get_text(strip=True).replace(',', '')
+                text = resp.text[:5000]  # Only need header
 
-                            # Try to extract year from date
-                            year_match = re.search(r'(19|20)\d{2}', date_text)
-                            if year_match:
-                                year = int(year_match.group())
-                                bases = int(bp_text)
+                # Extract date from header (e.g., "June 15, 2025")
+                date_match = re.search(r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+(\d{4})', text)
+                year = int(date_match.group(2)) if date_match else None
 
-                                # Parse sequences if available
-                                sequences = 0
-                                if len(cols) >= 4:
-                                    seq_text = cols[3].get_text(strip=True).replace(',', '')
-                                    try:
-                                        sequences = int(seq_text)
-                                    except ValueError:
-                                        pass
+                # Extract bases - look for "X bases" in traditional records section
+                # Format: "258,320,620 sequences\n5,676,067,778,413 bases"
+                bases_match = re.search(r'([\d,]+)\s+bases', text)
+                bases = int(bases_match.group(1).replace(',', '')) if bases_match else None
 
-                                growth_data.append({
-                                    'release': release_text,
-                                    'date': date_text,
-                                    'year': year,
-                                    'bases': bases,
-                                    'sequences': sequences
-                                })
-                        except (ValueError, IndexError):
-                            continue
+                # Extract sequences
+                seq_match = re.search(r'([\d,]+)\s+sequences', text)
+                sequences = int(seq_match.group(1).replace(',', '')) if seq_match else None
 
-                if growth_data:
-                    break
+                if year and bases:
+                    growth_data.append({
+                        'release': release_num,
+                        'year': year,
+                        'bases': bases,
+                        'sequences': sequences or 0
+                    })
+                    print(f"      gb{release_num} ({year}): {bases/1e12:.2f} TB")
+
+            except Exception as e:
+                print(f"      gb{release_num}: failed ({e})")
+                continue
 
         if not growth_data:
-            raise ValueError("Could not parse GenBank statistics table")
+            raise ValueError("Could not fetch any GenBank release notes")
 
-        # Sort by year and deduplicate (keep latest per year)
+        # Sort and deduplicate by year (keep latest release per year)
         df = pd.DataFrame(growth_data)
-        df = df.sort_values(['year', 'bases'])
+        df = df.sort_values(['year', 'release'])
         df = df.drop_duplicates(subset=['year'], keep='last')
         df = df.sort_values('year')
 
