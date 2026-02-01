@@ -24,12 +24,10 @@ class ScalingBioApp {
             // Hide loading, show content
             document.getElementById('loading').style.display = 'none';
             document.getElementById('charts').style.display = 'block';
-            document.getElementById('sources').style.display = 'block';
 
             // Initialize UI components
             this.renderCounters();
             this.initChart();
-            this.renderSourceCards();
             this.updateLastUpdated();
             this.setupEventListeners();
 
@@ -90,28 +88,6 @@ class ScalingBioApp {
     updateChart() {
         const source = this.sources[this.currentSourceIndex];
         this.chartManager.render(source, this.currentView);
-    }
-
-    renderSourceCards() {
-        const container = document.getElementById('source-cards');
-        container.innerHTML = '';
-
-        this.sources.forEach(source => {
-            const card = document.createElement('div');
-            card.className = 'source-card';
-            card.style.setProperty('--accent-color', source.source.color);
-
-            card.innerHTML = `
-                <h3>${source.source.name}</h3>
-                <p>${source.source.description}</p>
-                <div class="source-meta">
-                    <span>Updated ${source.metadata.update_frequency}</span>
-                    <a href="${source.source.url}" target="_blank">Visit Source</a>
-                </div>
-            `;
-
-            container.appendChild(card);
-        });
     }
 
     updateLastUpdated() {
