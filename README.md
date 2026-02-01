@@ -32,8 +32,8 @@ Data is collected weekly via automated GitHub Actions from primary sources. Each
 ### GenBank
 
 - **Metric:** Total nucleotide bases
-- **Source:** [NCBI GenBank Statistics](https://www.ncbi.nlm.nih.gov/genbank/statistics/)
-- **Method:** Scrapes historical growth table from NCBI statistics page
+- **Source:** [NCBI GenBank FTP Release Notes](https://ftp.ncbi.nih.gov/genbank/release.notes/)
+- **Method:** Parses `gb*.release.notes` files for base counts from each release
 - **Update frequency:** Bi-monthly
 
 ### UniProt
