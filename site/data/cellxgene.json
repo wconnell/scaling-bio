@@ -22,150 +22,435 @@
       "metric_id": "cells",
       "data": [
         {
+          "date": "2016-01-01",
+          "cumulative": 1012,
+          "value": 1012
+        },
+        {
+          "date": "2016-10-01",
+          "cumulative": 2293,
+          "value": 1281
+        },
+        {
+          "date": "2017-09-01",
+          "cumulative": 3827,
+          "value": 1533
+        },
+        {
+          "date": "2017-10-01",
+          "cumulative": 5990,
+          "value": 2163
+        },
+        {
+          "date": "2017-12-01",
+          "cumulative": 21066,
+          "value": 15076
+        },
+        {
+          "date": "2018-08-01",
+          "cumulative": 45340,
+          "value": 24273
+        },
+        {
+          "date": "2018-10-01",
+          "cumulative": 104931,
+          "value": 59590
+        },
+        {
+          "date": "2018-11-01",
+          "cumulative": 147324,
+          "value": 42392
+        },
+        {
+          "date": "2018-12-01",
+          "cumulative": 213700,
+          "value": 66376
+        },
+        {
+          "date": "2019-01-01",
+          "cumulative": 224430,
+          "value": 10729
+        },
+        {
+          "date": "2019-02-01",
+          "cumulative": 235257,
+          "value": 10827
+        },
+        {
+          "date": "2019-07-01",
+          "cumulative": 268682,
+          "value": 33424
+        },
+        {
+          "date": "2019-08-01",
+          "cumulative": 300119,
+          "value": 31437
+        },
+        {
+          "date": "2019-09-01",
+          "cumulative": 363939,
+          "value": 63819
+        },
+        {
+          "date": "2019-10-01",
+          "cumulative": 407321,
+          "value": 43382
+        },
+        {
+          "date": "2019-11-01",
+          "cumulative": 418438,
+          "value": 11116
+        },
+        {
+          "date": "2019-12-01",
+          "cumulative": 563123,
+          "value": 144685
+        },
+        {
+          "date": "2020-01-01",
+          "cumulative": 683960,
+          "value": 120837
+        },
+        {
           "date": "2020-02-01",
-          "cumulative": 1911544,
-          "value": 1911544
+          "cumulative": 937537,
+          "value": 253576
+        },
+        {
+          "date": "2020-03-01",
+          "cumulative": 1666514,
+          "value": 728976
+        },
+        {
+          "date": "2020-04-01",
+          "cumulative": 1760125,
+          "value": 93610
         },
         {
           "date": "2020-06-01",
-          "cumulative": 2654535,
-          "value": 742990
+          "cumulative": 1927114,
+          "value": 166988
         },
         {
           "date": "2020-07-01",
-          "cumulative": 8044266,
-          "value": 5389731
+          "cumulative": 2607209,
+          "value": 680095
+        },
+        {
+          "date": "2020-08-01",
+          "cumulative": 2621840,
+          "value": 14630
+        },
+        {
+          "date": "2020-09-01",
+          "cumulative": 3246723,
+          "value": 624882
+        },
+        {
+          "date": "2020-10-01",
+          "cumulative": 3253500,
+          "value": 6777
+        },
+        {
+          "date": "2020-11-01",
+          "cumulative": 6557202,
+          "value": 3303702
         },
         {
           "date": "2020-12-01",
-          "cumulative": 8474738,
-          "value": 430471
+          "cumulative": 6608653,
+          "value": 51450
         },
         {
           "date": "2021-01-01",
-          "cumulative": 9422668,
-          "value": 947929
+          "cumulative": 6948410,
+          "value": 339757
+        },
+        {
+          "date": "2021-02-01",
+          "cumulative": 8108111,
+          "value": 1159701
         },
         {
           "date": "2021-03-01",
-          "cumulative": 10060999,
-          "value": 638331
+          "cumulative": 8394522,
+          "value": 286410
+        },
+        {
+          "date": "2021-04-01",
+          "cumulative": 8972119,
+          "value": 577597
+        },
+        {
+          "date": "2021-05-01",
+          "cumulative": 10014367,
+          "value": 1042247
         },
         {
           "date": "2021-06-01",
-          "cumulative": 12300940,
-          "value": 2239940
+          "cumulative": 10399902,
+          "value": 385535
+        },
+        {
+          "date": "2021-07-01",
+          "cumulative": 10445760,
+          "value": 45857
+        },
+        {
+          "date": "2021-08-01",
+          "cumulative": 11364264,
+          "value": 918504
         },
         {
           "date": "2021-09-01",
-          "cumulative": 15690249,
-          "value": 3389309
+          "cumulative": 12507216,
+          "value": 1142952
         },
         {
           "date": "2021-10-01",
-          "cumulative": 16039641,
-          "value": 349391
+          "cumulative": 13579958,
+          "value": 1072741
         },
         {
           "date": "2021-11-01",
-          "cumulative": 17294763,
-          "value": 1255122
+          "cumulative": 13731078,
+          "value": 151120
+        },
+        {
+          "date": "2021-12-01",
+          "cumulative": 14468719,
+          "value": 737640
         },
         {
           "date": "2022-01-01",
-          "cumulative": 21511915,
-          "value": 4217152
+          "cumulative": 15175451,
+          "value": 706732
+        },
+        {
+          "date": "2022-02-01",
+          "cumulative": 15399702,
+          "value": 224250
         },
         {
           "date": "2022-03-01",
-          "cumulative": 36242549,
-          "value": 14730633
+          "cumulative": 17663084,
+          "value": 2263382
         },
         {
           "date": "2022-04-01",
-          "cumulative": 36813927,
-          "value": 571378
+          "cumulative": 19275251,
+          "value": 1612166
+        },
+        {
+          "date": "2022-05-01",
+          "cumulative": 23956395,
+          "value": 4681144
         },
         {
           "date": "2022-07-01",
-          "cumulative": 37181370,
-          "value": 367442
+          "cumulative": 24772328,
+          "value": 815932
+        },
+        {
+          "date": "2022-08-01",
+          "cumulative": 27270409,
+          "value": 2498080
         },
         {
           "date": "2022-09-01",
-          "cumulative": 37350253,
-          "value": 168883
+          "cumulative": 27349123,
+          "value": 78714
         },
         {
           "date": "2022-10-01",
-          "cumulative": 40171705,
-          "value": 2821451
+          "cumulative": 27931433,
+          "value": 582310
+        },
+        {
+          "date": "2022-11-01",
+          "cumulative": 29454729,
+          "value": 1523295
+        },
+        {
+          "date": "2022-12-01",
+          "cumulative": 30976620,
+          "value": 1521890
         },
         {
           "date": "2023-01-01",
-          "cumulative": 40307966,
-          "value": 136261
+          "cumulative": 31427310,
+          "value": 450690
+        },
+        {
+          "date": "2023-02-01",
+          "cumulative": 31541373,
+          "value": 114062
         },
         {
           "date": "2023-03-01",
-          "cumulative": 43116718,
-          "value": 2808751
+          "cumulative": 32181599,
+          "value": 640225
+        },
+        {
+          "date": "2023-04-01",
+          "cumulative": 32430209,
+          "value": 248609
+        },
+        {
+          "date": "2023-05-01",
+          "cumulative": 32644137,
+          "value": 213927
+        },
+        {
+          "date": "2023-06-01",
+          "cumulative": 35334666,
+          "value": 2690529
         },
         {
           "date": "2023-07-01",
-          "cumulative": 47780849,
-          "value": 4664131
+          "cumulative": 37079056,
+          "value": 1744390
+        },
+        {
+          "date": "2023-08-01",
+          "cumulative": 37310211,
+          "value": 231154
+        },
+        {
+          "date": "2023-09-01",
+          "cumulative": 37726103,
+          "value": 415892
         },
         {
           "date": "2023-10-01",
-          "cumulative": 81539169,
-          "value": 33758319
+          "cumulative": 54161633,
+          "value": 16435530
         },
         {
           "date": "2023-11-01",
-          "cumulative": 83444268,
-          "value": 1905099
+          "cumulative": 57893672,
+          "value": 3732038
+        },
+        {
+          "date": "2023-12-01",
+          "cumulative": 60968234,
+          "value": 3074561
         },
         {
           "date": "2024-01-01",
-          "cumulative": 83535668,
-          "value": 91399
+          "cumulative": 61533812,
+          "value": 565577
         },
         {
           "date": "2024-02-01",
-          "cumulative": 83732603,
-          "value": 196935
+          "cumulative": 82270326,
+          "value": 20736514
+        },
+        {
+          "date": "2024-03-01",
+          "cumulative": 84875088,
+          "value": 2604761
+        },
+        {
+          "date": "2024-04-01",
+          "cumulative": 85468863,
+          "value": 593774
+        },
+        {
+          "date": "2024-05-01",
+          "cumulative": 86586345,
+          "value": 1117481
+        },
+        {
+          "date": "2024-06-01",
+          "cumulative": 86697777,
+          "value": 111431
+        },
+        {
+          "date": "2024-07-01",
+          "cumulative": 87128613,
+          "value": 430836
+        },
+        {
+          "date": "2024-08-01",
+          "cumulative": 87616813,
+          "value": 488199
         },
         {
           "date": "2024-09-01",
-          "cumulative": 86580921,
-          "value": 2848318
+          "cumulative": 88180165,
+          "value": 563352
         },
         {
           "date": "2024-10-01",
-          "cumulative": 119679807,
-          "value": 33098886
+          "cumulative": 92707464,
+          "value": 4527298
         },
         {
           "date": "2024-11-01",
-          "cumulative": 125247642,
-          "value": 5567834
+          "cumulative": 105450433,
+          "value": 12742968
+        },
+        {
+          "date": "2024-12-01",
+          "cumulative": 106071738,
+          "value": 621305
         },
         {
           "date": "2025-01-01",
-          "cumulative": 125296156,
-          "value": 48513
+          "cumulative": 107240646,
+          "value": 1168908
+        },
+        {
+          "date": "2025-02-01",
+          "cumulative": 107859189,
+          "value": 618542
+        },
+        {
+          "date": "2025-03-01",
+          "cumulative": 110213717,
+          "value": 2354527
+        },
+        {
+          "date": "2025-04-01",
+          "cumulative": 110916232,
+          "value": 702515
+        },
+        {
+          "date": "2025-05-01",
+          "cumulative": 111777145,
+          "value": 860912
+        },
+        {
+          "date": "2025-06-01",
+          "cumulative": 112803145,
+          "value": 1026000
+        },
+        {
+          "date": "2025-07-01",
+          "cumulative": 112915763,
+          "value": 112617
         },
         {
           "date": "2025-08-01",
+          "cumulative": 114553365,
+          "value": 1637601
+        },
+        {
+          "date": "2025-09-01",
+          "cumulative": 114818775,
+          "value": 265410
+        },
+        {
+          "date": "2025-10-01",
           "cumulative": 125463259,
-          "value": 167102
+          "value": 10644483
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-02-01T22:19:15.499451Z",
+    "last_updated": "2026-02-02T16:47:47.066539Z",
     "update_frequency": "quarterly",
     "data_license": "CC BY 4.0"
   }

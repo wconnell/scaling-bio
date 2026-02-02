@@ -1,8 +1,10 @@
 """Collector for CZI CellxGene Census data."""
 
 import os
+import json
+import time
 from datetime import datetime
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import pandas as pd
 import numpy as np
 import requests
@@ -65,26 +67,96 @@ class CellxGeneCollector(BaseCollector):
         finally:
             census.close()
 
-    def _get_publication_dates(self, dois: list) -> dict:
-        """Fetch publication dates from CrossRef API."""
-        def get_date(doi):
-            if pd.isna(doi):
-                return None
+    def _get_cache_path(self) -> str:
+        """Get path to DOI cache file (stored in collectors/ to be tracked by git)."""
+        return os.path.join(os.path.dirname(__file__), "cellxgene_doi_cache.json")
+
+    def _load_doi_cache(self) -> dict:
+        """Load cached DOI->date mappings."""
+        cache_path = self._get_cache_path()
+        if os.path.exists(cache_path):
+            with open(cache_path, 'r') as f:
+                return json.load(f)
+        return {}
+
+    def _save_doi_cache(self, cache: dict) -> None:
+        """Save DOI->date mappings to cache."""
+        cache_path = self._get_cache_path()
+        with open(cache_path, 'w') as f:
+            json.dump(cache, f, indent=2, sort_keys=True)
+
+    def _fetch_single_doi(self, doi: str, max_retries: int = 3) -> tuple:
+        """Fetch publication date for a single DOI with retries."""
+        if pd.isna(doi):
+            return (doi, None)
+
+        for attempt in range(max_retries):
             try:
                 url = f"https://api.crossref.org/works/{doi}"
-                response = requests.get(url, timeout=10)
+                response = requests.get(url, timeout=15)
+
                 if response.status_code == 200:
                     data = response.json()
-                    return data['message'].get('created', {}).get('date-time')
-            except:
+                    date = data['message'].get('created', {}).get('date-time')
+                    return (doi, date)
+                elif response.status_code == 429:  # Rate limited
+                    wait_time = 2 ** attempt
+                    time.sleep(wait_time)
+                    continue
+                elif response.status_code == 404:  # DOI not found
+                    return (doi, None)
+            except requests.exceptions.Timeout:
+                wait_time = 2 ** attempt
+                time.sleep(wait_time)
+                continue
+            except Exception:
                 pass
-            return None
 
-        print("  Fetching publication dates from CrossRef...")
-        with ThreadPoolExecutor(max_workers=10) as executor:
-            dates = list(executor.map(get_date, dois))
+        return (doi, None)
 
-        return dict(zip(dois, dates))
+    def _get_publication_dates(self, dois: list) -> dict:
+        """Fetch publication dates from CrossRef API with caching and retries."""
+        # Load existing cache
+        cache = self._load_doi_cache()
+        cached_count = 0
+        fetch_count = 0
+
+        # Separate cached vs uncached DOIs
+        results = {}
+        dois_to_fetch = []
+
+        for doi in dois:
+            if doi in cache:
+                results[doi] = cache[doi]
+                cached_count += 1
+            else:
+                dois_to_fetch.append(doi)
+
+        print(f"  CrossRef: {cached_count} cached, {len(dois_to_fetch)} to fetch...")
+
+        if dois_to_fetch:
+            # Fetch uncached DOIs with thread pool (limited concurrency to avoid rate limits)
+            with ThreadPoolExecutor(max_workers=5) as executor:
+                futures = {executor.submit(self._fetch_single_doi, doi): doi for doi in dois_to_fetch}
+
+                for future in as_completed(futures):
+                    doi, date = future.result()
+                    results[doi] = date
+                    cache[doi] = date  # Cache both successes and failures
+                    fetch_count += 1
+
+                    if fetch_count % 50 == 0:
+                        print(f"    Fetched {fetch_count}/{len(dois_to_fetch)}...")
+
+            # Save updated cache
+            self._save_doi_cache(cache)
+            print(f"    Fetched {fetch_count} DOIs, cache updated")
+
+        # Count successful dates
+        success_count = sum(1 for d in results.values() if d is not None)
+        print(f"  Total DOIs with dates: {success_count}/{len(dois)}")
+
+        return results
 
     def transform(self) -> CollectorOutput:
         """Transform collected data to standard format."""
