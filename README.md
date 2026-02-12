@@ -16,13 +16,15 @@ Data is collected weekly via automated GitHub Actions from primary sources. Each
 
 ### SRA (Sequence Read Archive)
 
+- **Data:** Raw high-throughput sequencing reads (RNA-seq, WGS, WES, ChIP-seq, etc.)
 - **Metric:** Total sequenced bases
 - **Source:** [NIH SRA BigQuery Public Dataset](https://www.ncbi.nlm.nih.gov/sra/docs/sra-bigquery/)
-- **Query:** Aggregates `mbases` column by release year from `nih-sra-datastore.sra.metadata`
+- **Method:** Aggregates `mbases` column by release year from `nih-sra-datastore.sra.metadata`
 - **Update frequency:** Weekly
 
 ### CellxGene Census
 
+- **Data:** Single-cell RNA-seq expression matrices with cell-level annotations
 - **Metric:** Unique single cells profiled
 - **Source:** [CZI CellxGene Census API](https://chanzuckerberg.github.io/cellxgene-census/)
 - **Method:** Queries `census_info.summary` for official `unique_cell_count`. Timeseries derived from dataset publication dates via CrossRef API, scaled to match official totals.
@@ -30,13 +32,15 @@ Data is collected weekly via automated GitHub Actions from primary sources. Each
 
 ### PDB (Protein Data Bank)
 
-- **Metric:** Experimentally determined structures
+- **Data:** Experimentally determined 3D structures of proteins and nucleic acids (X-ray, cryo-EM, NMR)
+- **Metric:** Total structures
 - **Source:** [RCSB PDB Search API](https://search.rcsb.org/)
 - **Method:** Queries total structure count and groups by release year
 - **Update frequency:** Weekly
 
 ### GenBank
 
+- **Data:** Annotated nucleotide sequences (genes, genomes, transcripts)
 - **Metric:** Total nucleotide bases
 - **Source:** [NCBI GenBank FTP Release Notes](https://ftp.ncbi.nih.gov/genbank/release.notes/)
 - **Method:** Parses `gb*.release.notes` files for base counts from each release
@@ -44,7 +48,8 @@ Data is collected weekly via automated GitHub Actions from primary sources. Each
 
 ### UniProt
 
-- **Metric:** Protein sequences in UniProtKB
+- **Data:** Curated protein sequences with functional annotations
+- **Metric:** Total protein sequences
 - **Source:** [UniProt FTP Release Archives](https://ftp.uniprot.org/pub/databases/uniprot/previous_releases/)
 - **Method:** Parses `relnotes.txt` from each yearly release to extract entry counts
 - **Update frequency:** Monthly
