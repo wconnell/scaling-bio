@@ -32,7 +32,8 @@ class ChartManager {
 
             const data = ts.data
                 .map(point => ({
-                    x: new Date(point.date),
+                    // Parse as local time to avoid timezone shift (2025-01-01 -> Dec 31 2024)
+                    x: new Date(point.date + 'T00:00:00'),
                     y: viewType === 'annual' ? point.value : point.cumulative
                 }))
                 .filter(d => d.y != null && d.y > 0);
