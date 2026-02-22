@@ -150,13 +150,8 @@ class UniProtCollector(BaseCollector):
                 total = response.headers.get('X-Total-Results')
                 if total:
                     total_int = int(total)
-                    # Only use API value if it's higher than previous year (sanity check)
-                    max_historical = max(historical.values()) if historical else 0
-                    if total_int >= max_historical:
-                        historical[current_year] = total_int
-                        print(f"    {current_year}: {total_int:,} entries (current)")
-                    else:
-                        print(f"    {current_year}: API returned {total_int:,} (lower than previous, skipping)")
+                    historical[current_year] = total_int
+                    print(f"    {current_year}: {total_int:,} entries (current)")
         except Exception as e:
             print(f"  Warning: Could not fetch current count: {e}")
 
@@ -171,9 +166,7 @@ class UniProtCollector(BaseCollector):
         prev_seqs = 0
 
         for _, row in df.iterrows():
-            annual_seqs = row['sequences'] - prev_seqs
-            if annual_seqs < 0:
-                annual_seqs = 0
+            annual_seqs = row['sequences'] - prev_seqs  # Can be negative (net removals)
 
             timeseries_data.append(
                 TimeseriesPoint(
