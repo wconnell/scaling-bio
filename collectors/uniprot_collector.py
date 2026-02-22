@@ -5,6 +5,7 @@ import re
 from datetime import datetime
 import pandas as pd
 import requests
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 from .base import (
     BaseCollector, CollectorOutput, SourceInfo,
@@ -24,6 +25,17 @@ class UniProtCollector(BaseCollector):
 
     def __init__(self, data_dir: str = "data/uniprot"):
         self.data_dir = data_dir
+
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=2, min=2, max=30),
+        retry=retry_if_exception_type((requests.exceptions.RequestException,))
+    )
+    def _fetch_url(self, url: str, **kwargs) -> requests.Response:
+        """Fetch URL with retry logic."""
+        response = requests.get(url, timeout=60, **kwargs)
+        response.raise_for_status()
+        return response
 
     @property
     def source_id(self) -> str:
@@ -47,7 +59,7 @@ class UniProtCollector(BaseCollector):
         print("  Fetching UniProt release statistics...")
 
         # Fetch release notes which contain historical counts
-        response = requests.get(self.RELEASE_NOTES_URL, timeout=30)
+        response = self._fetch_url(self.RELEASE_NOTES_URL)
         response.raise_for_status()
 
         content = response.text
@@ -124,34 +136,31 @@ class UniProtCollector(BaseCollector):
                 url = f"{base_url}/{release_id}/relnotes.txt"
 
                 try:
-                    response = requests.get(url, timeout=15)
-                    if response.status_code == 200:
-                        # Parse entry count: "consists of N entries" or "N entries"
-                        match = re.search(r'(\d[\d,]*)\s+entries\s*\(UniProtKB', response.text)
-                        if not match:
-                            match = re.search(r'consists?\s+of\s+([\d,]+)\s+entries', response.text, re.IGNORECASE)
-                        if match:
-                            count = int(match.group(1).replace(',', ''))
-                            historical[year] = count
-                            print(f"    {year}: {count:,} entries")
-                            break  # Got data for this year
+                    response = self._fetch_url(url)
+                    # Parse entry count: "consists of N entries" or "N entries"
+                    match = re.search(r'(\d[\d,]*)\s+entries\s*\(UniProtKB', response.text)
+                    if not match:
+                        match = re.search(r'consists?\s+of\s+([\d,]+)\s+entries', response.text, re.IGNORECASE)
+                    if match:
+                        count = int(match.group(1).replace(',', ''))
+                        historical[year] = count
+                        print(f"    {year}: {count:,} entries")
+                        break  # Got data for this year
                 except Exception:
                     pass
 
         # Get current count from API
         try:
-            response = requests.get(
+            response = self._fetch_url(
                 self.API_URL,
                 params={'query': '*', 'size': '0'},
-                headers={'Accept': 'application/json'},
-                timeout=30
+                headers={'Accept': 'application/json'}
             )
-            if response.status_code == 200:
-                total = response.headers.get('X-Total-Results')
-                if total:
-                    total_int = int(total)
-                    historical[current_year] = total_int
-                    print(f"    {current_year}: {total_int:,} entries (current)")
+            total = response.headers.get('X-Total-Results')
+            if total:
+                total_int = int(total)
+                historical[current_year] = total_int
+                print(f"    {current_year}: {total_int:,} entries (current)")
         except Exception as e:
             print(f"  Warning: Could not fetch current count: {e}")
 
