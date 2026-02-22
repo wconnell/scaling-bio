@@ -2,9 +2,11 @@
 
 import os
 import re
+import time
 from datetime import datetime
 import pandas as pd
 import requests
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 from .base import (
     BaseCollector, CollectorOutput, SourceInfo,
@@ -22,6 +24,17 @@ class GenBankCollector(BaseCollector):
 
     def __init__(self, data_dir: str = "data/genbank"):
         self.data_dir = data_dir
+
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=2, min=2, max=30),
+        retry=retry_if_exception_type((requests.exceptions.RequestException,))
+    )
+    def _fetch_url(self, url: str) -> requests.Response:
+        """Fetch URL with retry logic."""
+        response = requests.get(url, timeout=60)
+        response.raise_for_status()
+        return response
 
     @property
     def source_id(self) -> str:
@@ -45,8 +58,7 @@ class GenBankCollector(BaseCollector):
         print("  Fetching GenBank release notes...")
 
         # Get list of release notes files
-        response = requests.get(f"{self.FTP_BASE}/", timeout=30)
-        response.raise_for_status()
+        response = self._fetch_url(f"{self.FTP_BASE}/")
 
         # Parse release numbers from directory listing
         release_pattern = re.compile(r'gb(\d+)\.release\.notes')
@@ -78,10 +90,8 @@ class GenBankCollector(BaseCollector):
         for release_num in sampled:
             url = f"{self.FTP_BASE}/gb{release_num}.release.notes"
             try:
-                resp = requests.get(url, timeout=30)
-                if resp.status_code != 200:
-                    continue
-
+                time.sleep(0.5)  # Be polite to NCBI servers
+                resp = self._fetch_url(url)
                 text = resp.text[:5000]  # Only need header
 
                 # Extract date from header (e.g., "June 15, 2025")
