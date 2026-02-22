@@ -4,6 +4,7 @@ import os
 from datetime import datetime, date
 import pandas as pd
 import requests
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 from .base import (
     BaseCollector, CollectorOutput, SourceInfo,
@@ -19,6 +20,43 @@ class PDBCollector(BaseCollector):
 
     def __init__(self, data_dir: str = "data/pdb"):
         self.data_dir = data_dir
+
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=2, min=2, max=30),
+        retry=retry_if_exception_type((requests.exceptions.RequestException,))
+    )
+    def _query_year(self, year: int) -> int:
+        """Query structure count for a single year with retry logic."""
+        query = {
+            "query": {
+                "type": "terminal",
+                "service": "text",
+                "parameters": {
+                    "attribute": "rcsb_accession_info.initial_release_date",
+                    "operator": "range",
+                    "value": {
+                        "from": f"{year}-01-01",
+                        "to": f"{year}-12-31",
+                        "include_lower": True,
+                        "include_upper": True
+                    }
+                }
+            },
+            "return_type": "entry",
+            "request_options": {
+                "return_all_hits": False,
+                "results_content_type": ["experimental"],
+                "paginate": {
+                    "start": 0,
+                    "rows": 0
+                }
+            }
+        }
+        response = requests.post(self.SEARCH_API, json=query, timeout=30)
+        response.raise_for_status()
+        result = response.json()
+        return result.get('total_count', 0)
 
     @property
     def source_id(self) -> str:
@@ -45,46 +83,14 @@ class PDBCollector(BaseCollector):
         print("  Fetching PDB yearly statistics...")
 
         for year in range(1976, current_year + 1):
-            query = {
-                "query": {
-                    "type": "terminal",
-                    "service": "text",
-                    "parameters": {
-                        "attribute": "rcsb_accession_info.initial_release_date",
-                        "operator": "range",
-                        "value": {
-                            "from": f"{year}-01-01",
-                            "to": f"{year}-12-31",
-                            "include_lower": True,
-                            "include_upper": True
-                        }
-                    }
-                },
-                "return_type": "entry",
-                "request_options": {
-                    "return_all_hits": False,
-                    "results_content_type": ["experimental"],
-                    "paginate": {
-                        "start": 0,
-                        "rows": 0
-                    }
-                }
-            }
-
             try:
-                response = requests.post(self.SEARCH_API, json=query, timeout=30)
-                if response.status_code == 200:
-                    result = response.json()
-                    count = result.get('total_count', 0)
-                    yearly_data.append({
-                        'year': year,
-                        'annual': count
-                    })
-                    if year % 10 == 0 or year == current_year:
-                        print(f"    {year}: {count:,} structures")
-                else:
-                    print(f"    {year}: API error {response.status_code}")
-                    yearly_data.append({'year': year, 'annual': 0})
+                count = self._query_year(year)
+                yearly_data.append({
+                    'year': year,
+                    'annual': count
+                })
+                if year % 10 == 0 or year == current_year:
+                    print(f"    {year}: {count:,} structures")
             except Exception as e:
                 print(f"    {year}: Error - {e}")
                 yearly_data.append({'year': year, 'annual': 0})

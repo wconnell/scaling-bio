@@ -2,12 +2,10 @@
 
 import os
 import json
-import time
-from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pandas as pd
-import numpy as np
 import requests
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 from .base import (
     BaseCollector, CollectorOutput, SourceInfo,
@@ -85,34 +83,30 @@ class CellxGeneCollector(BaseCollector):
         with open(cache_path, 'w') as f:
             json.dump(cache, f, indent=2, sort_keys=True)
 
-    def _fetch_single_doi(self, doi: str, max_retries: int = 3) -> tuple:
-        """Fetch publication date for a single DOI with retries."""
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=2, min=2, max=30),
+        retry=retry_if_exception_type((requests.exceptions.RequestException,))
+    )
+    def _fetch_doi_with_retry(self, doi: str) -> str | None:
+        """Fetch publication date for a single DOI with tenacity retry."""
+        url = f"https://api.crossref.org/works/{doi}"
+        response = requests.get(url, timeout=15)
+        if response.status_code == 404:
+            return None  # DOI not found, don't retry
+        response.raise_for_status()
+        data = response.json()
+        return data['message'].get('created', {}).get('date-time')
+
+    def _fetch_single_doi(self, doi: str) -> tuple:
+        """Fetch publication date for a single DOI."""
         if pd.isna(doi):
             return (doi, None)
-
-        for attempt in range(max_retries):
-            try:
-                url = f"https://api.crossref.org/works/{doi}"
-                response = requests.get(url, timeout=15)
-
-                if response.status_code == 200:
-                    data = response.json()
-                    date = data['message'].get('created', {}).get('date-time')
-                    return (doi, date)
-                elif response.status_code == 429:  # Rate limited
-                    wait_time = 2 ** attempt
-                    time.sleep(wait_time)
-                    continue
-                elif response.status_code == 404:  # DOI not found
-                    return (doi, None)
-            except requests.exceptions.Timeout:
-                wait_time = 2 ** attempt
-                time.sleep(wait_time)
-                continue
-            except Exception:
-                pass
-
-        return (doi, None)
+        try:
+            date = self._fetch_doi_with_retry(doi)
+            return (doi, date)
+        except Exception:
+            return (doi, None)
 
     def _get_publication_dates(self, dois: list) -> dict:
         """Fetch publication dates from CrossRef API with caching and retries."""
