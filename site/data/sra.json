@@ -12,8 +12,8 @@
       "id": "bases",
       "name": "Total Bases",
       "unit": "bases",
-      "current_value": 136013568774000000,
-      "formatted_value": "136.0 PB",
+      "current_value": 136757576153000000,
+      "formatted_value": "136.8 PB",
       "description": "Total sequenced bases in SRA"
     }
   ],
@@ -88,44 +88,44 @@
         },
         {
           "date": "2020-01-01",
-          "cumulative": 46493074629000000,
-          "value": 12424927134000000
+          "cumulative": 46493095741000000,
+          "value": 12424948246000000
         },
         {
           "date": "2021-01-01",
-          "cumulative": 61347227513000000,
-          "value": 14854152884000000
+          "cumulative": 61347249910000000,
+          "value": 14854154169000000
         },
         {
           "date": "2022-01-01",
-          "cumulative": 73873535863000000,
+          "cumulative": 73873558260000000,
           "value": 12526308350000000
         },
         {
           "date": "2023-01-01",
-          "cumulative": 88822809128000000,
-          "value": 14949273265000000
+          "cumulative": 88822829434000000,
+          "value": 14949271174000000
         },
         {
           "date": "2024-01-01",
-          "cumulative": 107787923499000000,
-          "value": 18965114371000000
+          "cumulative": 107782280236000000,
+          "value": 18959450802000000
         },
         {
           "date": "2025-01-01",
-          "cumulative": 130540605535000000,
-          "value": 22752682036000000
+          "cumulative": 130540265002000000,
+          "value": 22757984766000000
         },
         {
           "date": "2026-01-01",
-          "cumulative": 136013568774000000,
-          "value": 5472963239000000
+          "cumulative": 136757576153000000,
+          "value": 6217311151000000
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-03-15T04:30:17.453678Z",
+    "last_updated": "2026-03-22T04:16:06.906105Z",
     "update_frequency": "weekly",
     "data_license": "Public Domain"
   }
