@@ -12,8 +12,8 @@
       "id": "structures",
       "name": "Protein Structures",
       "unit": "structures",
-      "current_value": 254978,
-      "formatted_value": "255.0K",
+      "current_value": 255308,
+      "formatted_value": "255.3K",
       "description": "Total 3D macromolecular structures"
     }
   ],
@@ -223,64 +223,64 @@
         },
         {
           "date": "2016-01-01",
-          "cumulative": 125098,
-          "value": 10804
+          "cumulative": 125097,
+          "value": 10803
         },
         {
           "date": "2017-01-01",
-          "cumulative": 136159,
+          "cumulative": 136158,
           "value": 11061
         },
         {
           "date": "2018-01-01",
-          "cumulative": 147328,
+          "cumulative": 147327,
           "value": 11169
         },
         {
           "date": "2019-01-01",
-          "cumulative": 158807,
+          "cumulative": 158806,
           "value": 11479
         },
         {
           "date": "2020-01-01",
-          "cumulative": 172813,
+          "cumulative": 172812,
           "value": 14006
         },
         {
           "date": "2021-01-01",
-          "cumulative": 185398,
-          "value": 12585
+          "cumulative": 185396,
+          "value": 12584
         },
         {
           "date": "2022-01-01",
-          "cumulative": 199682,
+          "cumulative": 199680,
           "value": 14284
         },
         {
           "date": "2023-01-01",
-          "cumulative": 214180,
+          "cumulative": 214178,
           "value": 14498
         },
         {
           "date": "2024-01-01",
-          "cumulative": 229640,
+          "cumulative": 229638,
           "value": 15460
         },
         {
           "date": "2025-01-01",
-          "cumulative": 247257,
-          "value": 17617
+          "cumulative": 247254,
+          "value": 17616
         },
         {
           "date": "2026-01-01",
-          "cumulative": 254978,
-          "value": 7721
+          "cumulative": 255308,
+          "value": 8054
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-06-07T06:19:35.098524Z",
+    "last_updated": "2026-06-14T06:32:16.829497Z",
     "update_frequency": "weekly",
     "data_license": "CC0 1.0"
   }
