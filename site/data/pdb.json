@@ -12,8 +12,8 @@
       "id": "structures",
       "name": "Protein Structures",
       "unit": "structures",
-      "current_value": 255308,
-      "formatted_value": "255.3K",
+      "current_value": 255630,
+      "formatted_value": "255.6K",
       "description": "Total 3D macromolecular structures"
     }
   ],
@@ -203,84 +203,84 @@
         },
         {
           "date": "2012-01-01",
-          "cumulative": 86162,
-          "value": 8751
+          "cumulative": 86161,
+          "value": 8750
         },
         {
           "date": "2013-01-01",
-          "cumulative": 95500,
+          "cumulative": 95499,
           "value": 9338
         },
         {
           "date": "2014-01-01",
-          "cumulative": 105051,
+          "cumulative": 105050,
           "value": 9551
         },
         {
           "date": "2015-01-01",
-          "cumulative": 114294,
-          "value": 9243
+          "cumulative": 114292,
+          "value": 9242
         },
         {
           "date": "2016-01-01",
-          "cumulative": 125097,
+          "cumulative": 125095,
           "value": 10803
         },
         {
           "date": "2017-01-01",
-          "cumulative": 136158,
+          "cumulative": 136156,
           "value": 11061
         },
         {
           "date": "2018-01-01",
-          "cumulative": 147327,
+          "cumulative": 147325,
           "value": 11169
         },
         {
           "date": "2019-01-01",
-          "cumulative": 158806,
+          "cumulative": 158804,
           "value": 11479
         },
         {
           "date": "2020-01-01",
-          "cumulative": 172812,
+          "cumulative": 172810,
           "value": 14006
         },
         {
           "date": "2021-01-01",
-          "cumulative": 185396,
+          "cumulative": 185394,
           "value": 12584
         },
         {
           "date": "2022-01-01",
-          "cumulative": 199680,
+          "cumulative": 199678,
           "value": 14284
         },
         {
           "date": "2023-01-01",
-          "cumulative": 214178,
+          "cumulative": 214176,
           "value": 14498
         },
         {
           "date": "2024-01-01",
-          "cumulative": 229638,
+          "cumulative": 229636,
           "value": 15460
         },
         {
           "date": "2025-01-01",
-          "cumulative": 247254,
+          "cumulative": 247252,
           "value": 17616
         },
         {
           "date": "2026-01-01",
-          "cumulative": 255308,
-          "value": 8054
+          "cumulative": 255630,
+          "value": 8378
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-06-14T06:32:16.829497Z",
+    "last_updated": "2026-06-21T06:47:40.975208Z",
     "update_frequency": "weekly",
     "data_license": "CC0 1.0"
   }
