@@ -12,8 +12,8 @@
       "id": "bases",
       "name": "Total Bases",
       "unit": "bases",
-      "current_value": 143837519140000000,
-      "formatted_value": "143.8 PB",
+      "current_value": 144275527465000000,
+      "formatted_value": "144.3 PB",
       "description": "Total sequenced bases in SRA"
     }
   ],
@@ -73,59 +73,59 @@
         },
         {
           "date": "2017-01-01",
-          "cumulative": 14604559735000000,
-          "value": 5382192086000000
+          "cumulative": 14604569335000000,
+          "value": 5382201686000000
         },
         {
           "date": "2018-01-01",
-          "cumulative": 23126361841000000,
+          "cumulative": 23126371441000000,
           "value": 8521802106000000
         },
         {
           "date": "2019-01-01",
-          "cumulative": 34068243287000000,
+          "cumulative": 34068252887000000,
           "value": 10941881446000000
         },
         {
           "date": "2020-01-01",
-          "cumulative": 46493376742000000,
+          "cumulative": 46493386342000000,
           "value": 12425133455000000
         },
         {
           "date": "2021-01-01",
-          "cumulative": 61344481243000000,
+          "cumulative": 61344490843000000,
           "value": 14851104501000000
         },
         {
           "date": "2022-01-01",
-          "cumulative": 73871598791000000,
+          "cumulative": 73871608391000000,
           "value": 12527117548000000
         },
         {
           "date": "2023-01-01",
-          "cumulative": 88822466973000000,
-          "value": 14950868182000000
+          "cumulative": 88822814584000000,
+          "value": 14951206193000000
         },
         {
           "date": "2024-01-01",
-          "cumulative": 107769518136000000,
-          "value": 18947051163000000
+          "cumulative": 107776374411000000,
+          "value": 18953559827000000
         },
         {
           "date": "2025-01-01",
-          "cumulative": 130527396660000000,
-          "value": 22757878524000000
+          "cumulative": 130536885886000000,
+          "value": 22760511475000000
         },
         {
           "date": "2026-01-01",
-          "cumulative": 143837519140000000,
-          "value": 13310122480000000
+          "cumulative": 144275527465000000,
+          "value": 13738641579000000
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-06-21T06:47:29.225715Z",
+    "last_updated": "2026-06-28T06:13:11.759026Z",
     "update_frequency": "weekly",
     "data_license": "Public Domain"
   }
