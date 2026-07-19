@@ -12,8 +12,8 @@
       "id": "bases",
       "name": "Total Bases",
       "unit": "bases",
-      "current_value": 145378090044000000,
-      "formatted_value": "145.4 PB",
+      "current_value": 145924813765000000,
+      "formatted_value": "145.9 PB",
       "description": "Total sequenced bases in SRA"
     }
   ],
@@ -93,39 +93,39 @@
         },
         {
           "date": "2021-01-01",
-          "cumulative": 61344496665000000,
-          "value": 14851117150000000
+          "cumulative": 61344494850000000,
+          "value": 14851115335000000
         },
         {
           "date": "2022-01-01",
-          "cumulative": 73871664339000000,
+          "cumulative": 73871662524000000,
           "value": 12527167674000000
         },
         {
           "date": "2023-01-01",
-          "cumulative": 88817578470000000,
+          "cumulative": 88817576655000000,
           "value": 14945914131000000
         },
         {
           "date": "2024-01-01",
-          "cumulative": 107772834340000000,
-          "value": 18955255870000000
+          "cumulative": 107772687222000000,
+          "value": 18955110567000000
         },
         {
           "date": "2025-01-01",
-          "cumulative": 130526763950000000,
-          "value": 22753929610000000
+          "cumulative": 130524559564000000,
+          "value": 22751872342000000
         },
         {
           "date": "2026-01-01",
-          "cumulative": 145378090044000000,
-          "value": 14851326094000000
+          "cumulative": 145924813765000000,
+          "value": 15400254201000000
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-07-12T05:23:24.941243Z",
+    "last_updated": "2026-07-19T05:17:52.907853Z",
     "update_frequency": "weekly",
     "data_license": "Public Domain"
   }
