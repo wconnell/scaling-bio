@@ -12,8 +12,8 @@
       "id": "structures",
       "name": "Protein Structures",
       "unit": "structures",
-      "current_value": 258023,
-      "formatted_value": "258.0K",
+      "current_value": 258403,
+      "formatted_value": "258.4K",
       "description": "Total 3D macromolecular structures"
     }
   ],
@@ -243,44 +243,44 @@
         },
         {
           "date": "2020-01-01",
-          "cumulative": 172803,
-          "value": 14001
+          "cumulative": 172802,
+          "value": 14000
         },
         {
           "date": "2021-01-01",
-          "cumulative": 185387,
+          "cumulative": 185386,
           "value": 12584
         },
         {
           "date": "2022-01-01",
-          "cumulative": 199671,
+          "cumulative": 199670,
           "value": 14284
         },
         {
           "date": "2023-01-01",
-          "cumulative": 214169,
+          "cumulative": 214168,
           "value": 14498
         },
         {
           "date": "2024-01-01",
-          "cumulative": 229626,
+          "cumulative": 229625,
           "value": 15457
         },
         {
           "date": "2025-01-01",
-          "cumulative": 247236,
+          "cumulative": 247235,
           "value": 17610
         },
         {
           "date": "2026-01-01",
-          "cumulative": 258023,
-          "value": 10787
+          "cumulative": 258403,
+          "value": 11168
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-08-09T03:28:23.246318Z",
+    "last_updated": "2026-08-16T02:55:13.844234Z",
     "update_frequency": "weekly",
     "data_license": "CC0 1.0"
   }

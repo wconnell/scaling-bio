@@ -12,8 +12,8 @@
       "id": "bases",
       "name": "Total Bases",
       "unit": "bases",
-      "current_value": 7289942983522,
-      "formatted_value": "7.3 TB",
+      "current_value": 7618210921117,
+      "formatted_value": "7.6 TB",
       "description": "Total annotated nucleotide bases in GenBank"
     }
   ],
@@ -183,14 +183,14 @@
         },
         {
           "date": "2026-01-01",
-          "cumulative": 7289942983522,
-          "value": 638483108114
+          "cumulative": 7618210921117,
+          "value": 966751045709
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-08-09T03:29:05.079519Z",
+    "last_updated": "2026-08-16T02:56:22.993752Z",
     "update_frequency": "bimonthly",
     "data_license": "Public Domain"
   }
