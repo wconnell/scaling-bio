@@ -12,7 +12,7 @@
       "id": "sequences",
       "name": "Protein Sequences",
       "unit": "sequences",
-      "current_value": 149810139,
+      "current_value": 150006383,
       "formatted_value": "150M",
       "description": "Total protein sequences in UniProtKB"
     }
@@ -98,14 +98,14 @@
         },
         {
           "date": "2026-01-01",
-          "cumulative": 149810139,
-          "value": -103396032
+          "cumulative": 150006383,
+          "value": -103199788
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-08-30T07:49:12.256074Z",
+    "last_updated": "2026-09-06T06:48:57.699365Z",
     "update_frequency": "monthly",
     "data_license": "CC BY 4.0"
   }
