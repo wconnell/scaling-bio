@@ -12,8 +12,8 @@
       "id": "bases",
       "name": "Total Bases",
       "unit": "bases",
-      "current_value": 150615999308000000,
-      "formatted_value": "150.6 PB",
+      "current_value": 151589324661000000,
+      "formatted_value": "151.6 PB",
       "description": "Total sequenced bases in SRA"
     }
   ],
@@ -83,49 +83,49 @@
         },
         {
           "date": "2019-01-01",
-          "cumulative": 34068875322000000,
-          "value": 10942311956000000
+          "cumulative": 34068197103000000,
+          "value": 10941633737000000
         },
         {
           "date": "2020-01-01",
-          "cumulative": 46492987998000000,
+          "cumulative": 46492309779000000,
           "value": 12424112676000000
         },
         {
           "date": "2021-01-01",
-          "cumulative": 61343727338000000,
-          "value": 14850739340000000
+          "cumulative": 61343213078000000,
+          "value": 14850903299000000
         },
         {
           "date": "2022-01-01",
-          "cumulative": 73852845344000000,
+          "cumulative": 73852331084000000,
           "value": 12509118006000000
         },
         {
           "date": "2023-01-01",
-          "cumulative": 88764561420000000,
+          "cumulative": 88764047160000000,
           "value": 14911716076000000
         },
         {
           "date": "2024-01-01",
-          "cumulative": 107283883620000000,
-          "value": 18519322200000000
+          "cumulative": 107289402178000000,
+          "value": 18525355018000000
         },
         {
           "date": "2025-01-01",
-          "cumulative": 129962071121000000,
-          "value": 22678187501000000
+          "cumulative": 129965973688000000,
+          "value": 22676571510000000
         },
         {
           "date": "2026-01-01",
-          "cumulative": 150615999308000000,
-          "value": 20653928187000000
+          "cumulative": 151589324661000000,
+          "value": 21623350973000000
         }
       ]
     }
   ],
   "metadata": {
-    "last_updated": "2026-09-27T07:29:20.753148Z",
+    "last_updated": "2026-10-04T07:41:04.186064Z",
     "update_frequency": "weekly",
     "data_license": "Public Domain"
   }
